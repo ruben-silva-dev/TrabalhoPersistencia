@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="base/modelo" th:with="currentPage='instituicoes'">
+
+<head>
+
+<title>SID - Instituições</title>
+
+</head>
+
+<section layout:fragment="conteudo">
+	<ol class="breadcrumb">
+		<li class="active">Instituições</li>
+	</ol>
+	
+	<div class="page-header">
+	  <h1>Instituições</h1>
+	</div>
+	
+	<div th:if="${hasError}">
+		<div class="alert alert-danger" role="alert">
+			<span class="glyphicon glyphicon-exclamation-sign"
+				aria-hidden="true"></span> <span class="sr-only">Error:</span>
+			Erro no processamento das instituições
+		</div>
+		
+		<hr/>
+	</div>
+
+	<div class="panel panel-default">
+		<div class="panel-heading">
+			<div class="row">
+				<p class="panel-title col-sm-6">Instituições cadastradas</p>
+				
+				<div class="text-right col-sm-6">
+					<a th:href="@{/instituicoes/adicionar}" class="btn btn-default btn-sm">Adicionar</a>
+					<a th:href="@{/instituicoes/json}" class="btn btn-default btn-sm">JSON</a>
+					<a th:href="@{/instituicoes/xml}" class="btn btn-default btn-sm">XML</a>
+				</div>
+			</div>
+		</div>
+		<div class="panel-body">
+			<table class="table table-striped">
+				<thead>
+					<tr>
+						<th>NOME</th>
+						<th>CNPJ</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="instituicao : ${instituicoes}">
+						<td><a th:text="${instituicao.nome}" th:href="@{/instituicoes/__${instituicao.id}__}"></a></td>
+						<td th:text="${instituicao.cnpj}" />
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+</section>
+
+<section layout:fragment="js"></section>
+
+</html>

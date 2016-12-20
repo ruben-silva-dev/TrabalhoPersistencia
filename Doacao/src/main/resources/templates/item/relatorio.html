@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="base/modelo" th:with="currentPage='itens'">
+
+<head>
+
+<title>SID - Relatório</title>
+
+</head>
+
+<section layout:fragment="conteudo">
+	<ol class="breadcrumb">
+		<li><a th:href="@{/itens}">Itens</a></li>
+		<li class="active">Relatório</li>
+	</ol>
+	
+	<div class="page-header">
+	  <h1 th:text="${json} ? 'Relatório de itens - JSON' : 'Relatório de itens - XML'"></h1>
+	</div>
+	
+	<div class="panel panel-default">
+		<div class="panel-heading">
+			<p class="panel-title" th:text="${json} ? 'JSON' : 'XML'"></p>
+		</div>
+
+		<div class="panel-body">
+
+			<textarea class="form-control" th:text="${json} ?: ${xml}" rows="40"></textarea>
+
+		</div>
+	</div>
+</section>
+
+<section layout:fragment="js"></section>
+
+</html>

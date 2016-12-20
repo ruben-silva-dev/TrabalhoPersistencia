@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="base/modelo"
+	th:with="currentPage='instituicao'">
+
+<head>
+
+<title>SID - Detalhes da instituição</title>
+
+</head>
+
+<section layout:fragment="conteudo">
+	<ol class="breadcrumb">
+		<li><a th:href="@{/instituicoes}">Instituições</a></li>
+		<li class="active" th:text="${instituicao.nome}"></li>
+	</ol>
+	
+	<div class="page-header">
+	  <h1>Detalhes da instituição</h1>
+	</div>
+	
+	<div class="panel panel-default">
+		<div class="panel-heading">
+			<p class="panel-title">Dados básicos</p>
+		</div>
+		<div class="panel-body">
+			<div class="col-sm-6">
+				<strong>NOME:</strong>
+				<p class="lead" th:text="${instituicao.nome}"/>
+			</div>
+			
+			<div class="col-sm-6">
+				<strong>E-MAIL:</strong>
+				<p class="lead" th:text="${instituicao.email}"/>
+			</div>
+			
+			<div class="col-sm-6">
+				<strong>CNPJ:</strong>
+				<p class="lead" th:text="${instituicao.cnpj}"/>
+			</div>
+			
+			<div class="col-sm-6">
+				<strong>TELEFONE:</strong>
+				<p class="lead" th:text="${instituicao.telefone}"/>
+			</div>
+			
+			<div class="col-sm-6">
+				<strong>ENDEREÇO:</strong>
+				<p class="lead" th:text="${instituicao.endereco.rua} + ', Nº ' + ${instituicao.endereco.numero}"/>
+			</div>
+			
+			<div class="col-sm-6">
+				<strong>BAIRRO:</strong>
+				<p class="lead" th:text="${instituicao.endereco.bairro}"/>
+			</div>
+			
+			<div class="col-sm-6">
+				<strong>COMPLEMENTO:</strong>
+				<p class="lead" th:text="${instituicao.endereco.complemento} ?: '-'"/>
+			</div>
+			
+			<div class="col-sm-6">
+				<strong>CEP:</strong>
+				<p class="lead" th:text="${instituicao.endereco.cep}"/>
+			</div>
+		</div>
+	</div>
+	
+	<div class="panel panel-default">
+		<div class="panel-heading">
+			<p class="panel-title">Necessidades</p>
+		</div>
+		<div class="panel-body">
+			
+			<table class="table table-striped">
+				<thead>
+					<tr>
+						<th>ITEM ID</th>
+						<th>QUANTIDADE</th>
+						<th>DATA</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="necessidade : ${instituicao.necessidades}">
+						<td th:text="${necessidade.idItem}"/>
+						<td th:text="${necessidade.quantidade}" />
+						<td th:text="${#dates.format(necessidade.data, 'dd/MM/yyyy')}"/>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+</section>
+
+<section layout:fragment="js"></section>
+
+</html>

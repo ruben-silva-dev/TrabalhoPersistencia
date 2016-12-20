@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="base/modelo" th:with="currentPage='itens'">
+
+<head>
+
+<title>SID - Adicionar itens</title>
+
+</head>
+
+<section layout:fragment="conteudo">
+	<ol class="breadcrumb">
+		<li><a th:href="@{/itens}">Itens</a></li>
+		<li class="active">Adicionar</li>
+	</ol>
+	
+	<div class="page-header">
+	  <h1>Adicionar itens</h1>
+	</div>
+	
+	<div class="panel panel-default">
+		<div class="panel-heading">
+			<p class="panel-title">Formulário</p>
+		</div>
+
+		<div class="panel-body">
+
+			<div th:if="${hasError}" class="alert alert-danger" role="alert">
+				<span class="glyphicon glyphicon-exclamation-sign"
+					aria-hidden="true"></span> <span class="sr-only">Error:</span>
+				Erro na serialização do arquivo
+			</div>
+
+			<form class="col-sm-12 form-horizontal"
+				th:action="@{/itens/adicionar}" method="post">
+				<div class="form-group">
+					<label for="input1">Entrada de dados:</label>
+					<textarea id="input1" class="form-control" name="itens" rows="15"
+						required="required"></textarea>
+				</div>
+				<div class="form-group">
+					<label for="input2">Formato:</label>
+					<div id="input2">
+						<div class="radio">
+							<label> <input type="radio" name="formato" value="JSON"
+								required="required" /> JSON
+							</label>
+						</div>
+						<div class="radio">
+							<label> <input type="radio" name="formato" value="XML"
+								required="required" /> XML
+							</label>
+						</div>
+					</div>
+				</div>
+				<button type="submit" class="btn btn-default">Enviar</button>
+			</form>
+
+		</div>
+	</div>
+</section>
+
+<section layout:fragment="js"></section>
+
+</html>

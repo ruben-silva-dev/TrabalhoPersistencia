@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="base/modelo" th:with="currentPage='itens'">
+
+<head>
+
+<title>SID - Itens</title>
+
+</head>
+
+<section layout:fragment="conteudo">
+	<ol class="breadcrumb">
+		<li class="active">Itens</li>
+	</ol>
+	
+	<div class="page-header">
+	  <h1>Itens</h1>
+	</div>
+	
+	<div th:if="${hasError}">
+		<div class="alert alert-danger" role="alert">
+			<span class="glyphicon glyphicon-exclamation-sign"
+				aria-hidden="true"></span> <span class="sr-only">Error:</span>
+			Erro no processamento dos itens
+		</div>
+		
+		<hr/>
+	</div>
+	
+	<div class="panel panel-default">
+		<div class="panel-heading">
+			<div class="row">
+				<p class="panel-title col-sm-6">Itens cadastrados</p>
+				
+				<div class="text-right col-sm-6">
+					<a th:href="@{/itens/adicionar}" class="btn btn-default btn-sm">Adicionar</a>
+					<a th:href="@{/itens/json}" class="btn btn-default btn-sm">JSON</a>
+					<a th:href="@{/itens/xml}" class="btn btn-default btn-sm">XML</a>
+				</div>
+			</div>
+		</div>
+
+		<div class="panel-body">
+			<table class="table table-striped">
+				<thead>
+					<tr>
+						<th>NOME</th>
+						<th>TIPO</th>
+						<th>DESCRIÇÃO</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="item : ${itens}">
+						<td th:text="${item.nome}" />
+						<td th:text="${item.tipo}" />
+						<td th:text="${item.descricao}" />
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+</section>
+
+<section layout:fragment="js"></section>
+
+</html>

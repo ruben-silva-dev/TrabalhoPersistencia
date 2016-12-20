@@ -8,7 +8,7 @@ public class Necessidade {
 
 	private Integer quantidade;
 
-	private Item item;
+	private String idItem;
 
 	public Date getData() {
 		return data;
@@ -26,12 +26,12 @@ public class Necessidade {
 		this.quantidade = quantidade;
 	}
 
-	public Item getItem() {
-		return item;
+	public String getIdItem() {
+		return idItem;
 	}
 
-	public void setItem(Item item) {
-		this.item = item;
+	public void setIdItem(String idItem) {
+		this.idItem = idItem;
 	}
 
 }
